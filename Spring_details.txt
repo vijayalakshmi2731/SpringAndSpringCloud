@@ -1,0 +1,68 @@
+Currency-Exchange service
+http://localhost:8000/currency-exchange/from/USD/to/INR
+
+
+Currency-conversion service
+http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+Eureka
+http://localhost:8761/
+
+API Gateway
+http://localhost:8765/
+
+Ports
+
+1. Limits Microservice
+Ports: 8080, 8081, etc.
+
+2. Spring Cloud Config Server
+Port: 8888
+
+3. Currency Exchange Microservice
+Ports: 8000, 8001, 8002, etc.
+
+4. Currency Conversion Microservice
+Ports: 8100, 8101, 8102, etc.
+
+5. Netflix Eureka Naming Server
+Port: 8761
+
+6. API Gateway
+Port: 8765
+
+7. Zipkin Distributed Tracing Server
+Port: 9411
+
+
+API Gateway routing
+Initial
+Normal - http://localhost:8000/currency-exchange/from/USD/to/INR
+API Gateway - http://localhost:8765/CURRENCY-EXCHANGE-SERVICE/currency-exchange/from/USD/to/INR
+here CURRENCY-EXCHANGE is the name registered in the eureka. We are saying to API to go to eureka get this name and then process the rest based on the api
+
+- http://localhost:8765/CURRENCY-CONVERSION-SERVICE/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/CURRENCY-CONVERSION-SERVICE/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+
+
+Lower Case
+
+- http://localhost:8765/currency-exchange-service/currency-exchange/from/USD/to/INR
+
+- http://localhost:8765/currency-conversion-service/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion-service/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+
+
+Custom Routes
+
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10

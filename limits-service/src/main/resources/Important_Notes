@@ -1,0 +1,14 @@
+Flow: 
+
+Limit service 
+	/limits - controller - mapped by GET req - go to configuration class - @ConfigurationProperties("limits-service")
+	go to props - sees config mapped - check for config app - through config (1) - takes the value from gir repo
+
+Config-service	
+	In parallel, config service has @EnableConfigServer - from propertiesfile- take the link and talks to local repo
+	gets the value from repo based on service name (Including env)
+	
+	Config should be in running state and should render the values. Then only our service can take those and access
+
+
+	   
